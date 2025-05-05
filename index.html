@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация гостя | Гостиница Веранова</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;  /* Темно-синий */
+            --secondary-color: #e0e0e0;  /* Светло-серый */
+            --accent-color: #c0392b;  /* Темно-красный */
+            --gold-color: #d4af37;  /* Золотой для звезд */
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--light-gray);
+            margin: 0;
+            
+            color: var(--text-color);
+            background-image: url('https://i.postimg.cc/zvGx41dr/1000093977.png');
+           
+        }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.2);
+            border: 1px solid var(--secondary-color);
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+        .logo-text {
+            font-family: 'Times New Roman', serif;
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+            margin: 10px 0 5px;
+        }
+        .stars {
+            color: var(--gold-color);
+            font-size: 24px;
+            letter-spacing: 5px;
+            margin-top: 5px;
+        }
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 14px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--secondary-color);
+            border-radius: 3px;
+            font-size: 15px;
+            background-color: white;
+            transition: all 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(192,57,43,0.1);
+        }
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s;
+            margin-top: 15px;
+        }
+        button:hover {
+            background: var(--accent-color);
+        }
+        .room-option {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: var(--light-gray);
+            border-radius: 3px;
+            border-left: 3px solid var(--accent-color);
+        }
+        .room-option.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        .room-option img {
+            width: 100%;
+            border-radius: 2px;
+            margin-bottom: 10px;
+            border: 1px solid var(--secondary-color);
+        }
+        .room-description {
+            font-size: 13px;
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .required:after {
+            content: " *";
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <div class="logo-text">ГОСТИНИЦА ВЕРАНОВА</div>
+            <div class="stars">★★★★</div>
+        </div>
+        
+        <h1>Регистрация гостя</h1>
+        
+        <form action="/register" method="POST">
+            <!-- Форма остается без изменений -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="last_name" class="required">Фамилия</label>
+                    <input type="text" id="last_name" name="last_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="first_name" class="required">Имя</label>
+                    <input type="text" id="first_name" name="first_name" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="passport" class="required">Паспортные данные</label>
+                    <input type="text" id="passport" name="passport" required>
+                </div>
+                <div class="form-group">
+                    <label for="citizenship">Гражданство</label>
+                    <select id="citizenship" name="citizenship">
+                        <option value="">Выберите</option>
+                        <option value="RU">Российская Федерация</option>
+                        <option value="KZ">Казахстан</option>
+                        <option value="BY">Беларусь</option>
+                        <option value="other">Другое</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="check_in" class="required">Дата заезда</label>
+                    <input type="date" id="check_in" name="check_in" required>
+                </div>
+                <div class="form-group">
+                    <label for="check_out" class="required">Дата выезда</label>
+                    <input type="date" id="check_out" name="check_out" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="room_type" class="required">Тип номера</label>
+                <select id="room_type" name="room_type" required onchange="showRoomOption(this.value)">
+                    <option value="">Выберите номер</option>
+                    <option value="standard">Стандарт</option>
+                    <option value="deluxe">Делюкс</option>
+                    <option value="suite">Люкс</option>
+                    <option value="presidential">Президентский</option>
+                </select>
+                
+                <div id="standard-room" class="room-option">
+                    <img src="standard-room.jpg" alt="Стандартный номер">
+                    <div class="room-description">
+                        Уютный номер площадью 20 м² с одной двуспальной кроватью, рабочей зоной и современной ванной комнатой.
+                    </div>
+                </div>
+                
+                <div id="deluxe-room" class="room-option">
+                    <img src="deluxe-room.jpg" alt="Номер Делюкс">
+                    <div class="room-description">
+                        Просторный номер площадью 30 м² с видом на город, мини-баром и повышенным уровнем комфорта.
+                    </div>
+                </div>
+                
+                <div id="suite-room" class="room-option">
+                    <img src="suite-room.jpg" alt="Люкс">
+                    <div class="room-description">
+                        Роскошный люкс площадью 45 м² с гостиной зоной, джакузи и панорамными окнами.
+                    </div>
+                </div>
+                
+                <div id="presidential-room" class="room-option">
+                    <img src="presidential-room.jpg" alt="Президентский люкс">
+                    <div class="room-description">
+                        Эксклюзивный номер площадью 80 м² с отдельной гостиной, столовой зоной и персональным обслуживанием.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone" class="required">Контактный телефон</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="purpose">Цель визита</label>
+                    <select id="purpose" name="purpose">
+                        <option value="">Выберите</option>
+                        <option value="business">Командировка</option>
+                        <option value="vacation">Отдых</option>
+                        <option value="event">Мероприятие</option>
+                        <option value="other">Другое</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">Дополнительные пожелания</label>
+                    <textarea id="notes" name="notes" rows="3"></textarea>
+                </div>
+                
+                <button type="submit">Зарегистрировать</button>
+            </form>
+        </div>
+
+        <script>
+            function showRoomOption(roomType) {
+                // Скрываем все варианты номеров
+                document.querySelectorAll('.room-option').forEach(option => {
+                    option.classList.remove('active');
+                });
+                
+                // Показываем выбранный вариант
+                if (roomType) {
+                    const roomElement = document.getElementById(roomType + '-room');
+                    if (roomElement) {
+                        roomElement.classList.add('active');
+                    }
+                }
+            }
+        </script>
+    </body>
+    </html>
